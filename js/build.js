@@ -77,8 +77,6 @@ function wrapChampion(text) {
       var width = 45;
     }
     else { var width = champNameLength; }
-    console.log(champNameLength);
-    console.log(width);
     while (word = words.pop()) {
         line.push(word);
         tspan.text(line.join(" "));
