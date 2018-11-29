@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Nexus Blitz Jungler Pairs</title>
+	<link type="text/css" href="css/main.css" rel="stylesheet"/>
+
+</head>
+<body>
+	<section id="title">
+		<h1 id="title-text">Nexus Blitz Jungler Pairs</h1>
+		<p id="instructions">Each circle represents a win rate for a pair of champions playing a jungle role. Mouseover each circle to find out more about a given pair.
+		To explore a new champion and their paired win rates, click on a new champion name in the list or type in a champion name in the search bar. Lastly, use the slider to change the minimum threshold of the number of games that the win rate is based on.</p>
+	</section>
+	<section id="graphic">
+		<svg id="title-svg" height="20px", width="100%">
+			<line id="title-line" x1="0" x2="900" y1="10" y2="10">
+		</svg>
+		<section id="options">
+			<div id="name-container">
+				<h2 id="champion-name">Nunu</h2>
+			</div>
+			<div id="searchbar-container">
+				<h5 id="searchbar-instructions">Search for a champion:</h5>
+				<input id="searchbar" type="text" placeholder="Type in a champion name">
+			</div>
+			<div id="slider-button-container">
+				<div id="button-section">
+					<h5 id="button-instructions">Sort by:</h5>
+					<div id="button-container">
+						<button type="button" id="button-win" value="win">Win rate</button>
+						<button type="button" id="button-play" value="play"># of games played</button>
+						<button type="button" id="button-alpha" value="alpha">Champion name</button>
+					</div>
+				</div>
+				<div id="slider-container">
+					<h5 id="slider-instructions">Show pairs with at least 200 games played:</h5>
+					<input id="slider" class="slider" type="range" min="137" max="12567" step="1" value="200" orient="horizontal"></input>
+				</div>
+			</div>
+		</section>
+		<svg id="graphic-svg" height="100%" width="100%"></svg>
+	</section>
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="js/avgWin.js"></script>
+	<script src="js/updates.js"></script>
+	<script src="js/build.js"></script>
+
+</body>
+</html>
