@@ -153,10 +153,10 @@ button {
   width: 90px;
 }
 #button-play {
-  width: 100px;
+  width: 110px;
 }
 #button-alpha {
-  width: 135px;
+  width: 150px;
 }
 #searchbar-container {
   float: left;
@@ -169,6 +169,7 @@ button {
 }
 #searchbar {
   height: 30px;
+  width: 100px;
   margin-left: 10px;
   margin-top: 0.25em;
   font-family: radnika-regular;
