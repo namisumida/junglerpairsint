@@ -144,13 +144,13 @@ button {
 #button-win {
   background-color: rgb(79,39,79);
   color: white;
-  width: 80px;
-}
-#button-play {
   width: 90px;
 }
+#button-play {
+  width: 100px;
+}
 #button-alpha {
-  width: 125px;
+  width: 135px;
 }
 #searchbar-container {
   float: left;
