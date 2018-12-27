@@ -304,22 +304,21 @@ function setup() {
             })
             .style("fill", "none");
     // Create line breaks
-    var breakline_g = svg.append("g").attr("id", "breakline_g");
-    breakline_g.selectAll("breakline")
-                .data(champ_subset.filter(function(d,i) {
-                  return (i+1)%5==0;
-                })) // this can be any mode, but should be based on the metric
-                .enter()
-                .append("line")
-                .attr("class", "breakline")
-                .attr("x1", 0)
-                .attr("x2", w_svg)
-                .attr("y1", function(d,i) {
-                  return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
-                })
-                .attr("y2", function(d,i) {
-                  return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
-                });
+    svg.selectAll("breakline")
+        .data(champ_subset.filter(function(d,i) {
+          return (i+1)%5==0;
+        })) // this can be any mode, but should be based on the metric
+        .enter()
+        .append("line")
+        .attr("class", "breakline")
+        .attr("x1", 0)
+        .attr("x2", w_svg)
+        .attr("y1", function(d,i) {
+          return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+        })
+        .attr("y2", function(d,i) {
+          return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+        });
 
     updateClick();
     updateSizing();
@@ -381,9 +380,12 @@ function resize() {
   graphicMargin = { w:(w_svg-margin.left-margin.right), w_names:90, btwn_names:15, h_col:13, h_btwn:5 };
   w_dotLine = graphicMargin.w-graphicMargin.w_names-graphicMargin.btwn_names;
   xScale_win = d3.scaleLinear()
-                     .domain([0,1])
-                     .range([80, w_dotLine]);
-  updateGraphic();
+                 .domain([0,1])
+                 .range([80, w_dotLine]);
+  xScale_play = d3.scaleLinear()
+                   .domain([0, d3.max(champ_subset, function(d) { return d.n_games; })])
+                   .range([0, d3.min([xScale_win(currAvg), (w_dotLine-xScale_win(currAvg))])]);
+  updateGraphicResizing();
 }; // end resize function
 
 function init() {

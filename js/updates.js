@@ -3,8 +3,8 @@ var xScale_play;
 var updatexScale_play = function(subset) {
   var maxDistance = d3.min([xScale_win(currAvg), (w_dotLine-xScale_win(currAvg))]);
   xScale_play = d3.scaleLinear()
-                   .domain([d3.min(subset, function(d) { return d.n_games; }), d3.max(subset, function(d) { return d.n_games; })])
-                   .range([30, maxDistance]);
+                   .domain([0, d3.max(subset, function(d) { return d.n_games; })])
+                   .range([0, maxDistance]);
 };
 var searchedChampion;
 // Search bar functions
@@ -279,7 +279,7 @@ var updateButton = function(button) {
 
 }; // end update button
 
-// Update
+// Update when changes are made (like a click)
 var updateGraphic = function() {
 
   // Update name text
@@ -638,21 +638,171 @@ var updateGraphic = function() {
        });
 
    // Create line breaks
-   svg.selectAll(".breakline")
-        .data(champ_subset.filter(function(d,i) {
-          return (i+1)%5==0;
-        }))
-        .enter()
-        .append("line")
-        .attr("class", "breakline")
-        .attr("x1", 0)
-        .attr("x2", w_svg)
-        .attr("y1", function(d,i) {
-          return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
-        })
-        .attr("y2", function(d,i) {
-          return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
-        });
+   svg.selectAll("breakline")
+      .data(champ_subset.filter(function(d,i) {
+        return (i+1)%5==0;
+      }))
+      .enter()
+      .append("line")
+      .attr("class", "breakline")
+      .attr("x1", 0)
+      .attr("x2", w_svg)
+      .attr("y1", function(d,i) {
+        return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+      })
+      .attr("y2", function(d,i) {
+        return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+      });
    updateClick();
    updateSizing();
 }; // end update graphic
+
+// Function for updating when there are resizing changes
+var updateGraphicResizing = function() {
+  dotGroup.select("#dotBackground")
+           .attr("x", graphicMargin.w_names)
+           .attr("y", function(d,i) {
+            return (graphicMargin.h_col+graphicMargin.h_btwn)*i;
+           })
+           .attr("width", w_dotLine+graphicMargin.btwn_names+margin.right)
+           .attr("height", graphicMargin.h_col);
+  dotGroup.select(".pairBar")
+           .attr("width", function(d) {
+             return xScale_play(d.n_games);
+           })
+           .attr("height", graphicMargin.h_col)
+           .attr("x", graphicMargin.w_names + graphicMargin.btwn_names)
+           .attr("y", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i;
+           });
+  nameGroup.select("#nameBackground")
+           .attr("y", function(d,i) {
+            return (graphicMargin.h_col+graphicMargin.h_btwn)*i;
+           })
+           .attr("width", graphicMargin.w_names)
+           .attr("height", graphicMargin.h_col);
+  nameGroup.select(".pairNameText")
+           .attr("x", graphicMargin.w_names)
+           .attr("y", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2 +3;
+           });
+  dotGroup.select(".dotDistance")
+          .attr("x", function(d) {
+            var winRate = +(d.winrate).toFixed(2)
+            if (winRate > currAvg) {
+              return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg);
+            }
+            else {
+              return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(+(winRate).toFixed(2));
+            }
+          })
+          .attr("y", function(d,i) {
+            return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2-1;
+          })
+          .attr("width", function(d) {
+            return Math.abs(xScale_win(+(d.winrate).toFixed(2))-xScale_win(currAvg));
+          });
+  dotGroup.select(".avgDot")
+           .attr("cx", function(d) {
+             return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg);
+           })
+           .attr("cy", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2;
+           });
+  dotGroup.select(".pairDot")
+           .attr("cx", function(d) {
+             return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(+(d.winrate).toFixed(2));
+           })
+           .attr("cy", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2;
+           });
+  dotGroup.select("#gamesCountLabel")
+           .attr("x", graphicMargin.w_names + graphicMargin.btwn_names + 5)
+           .attr("y", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2 +4;
+           });
+  dotGroup.select("#avgCountLabel")
+           .attr("x", function(d) {
+             if (+(d.winrate).toFixed(2) > currAvg) {
+               return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg) - 8;
+             }
+             else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg) + 8; };
+           })
+           .attr("y", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2 +4;
+           });
+  dotGroup.select("#pairCountLabel")
+           .attr("x", function(d) {
+             var roundedAvg = +(d.winrate).toFixed(2);
+             if (roundedAvg > currAvg) {
+               return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(roundedAvg) + 8;
+             }
+             else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(roundedAvg) - 8; };
+           })
+           .attr("y", function(d,i) {
+             return (graphicMargin.h_col+graphicMargin.h_btwn)*i + graphicMargin.h_col/2 +4;
+           });
+
+  // Update
+  svg.selectAll(".midline")
+      .attr("x1", graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg))
+      .attr("x2", graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg))
+      .attr("y2", margin.top + (graphicMargin.h_col + graphicMargin.h_btwn)*(nPairs-1) + graphicMargin.h_col/2);
+
+   // Data labels
+   var firstRow = champ_subset[0];
+   var firstRowDist = xScale_win(+firstRow.winrate.toFixed(2))-xScale_win(currAvg);
+   svg.select("#avgDataLabel")
+       .text(currChampionName + "'s win rate")
+       .attr("x", function() {
+         if (Math.abs(firstRowDist) < 30) {
+           if (firstRowDist < 0) { // if average is greater than winrate
+             return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg)+5;
+           }
+           else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg)-5; }
+         }
+         else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(currAvg); }
+       })
+       .call(wrapChampion)
+       .style("text-anchor", function() {
+         if (Math.abs(firstRowDist) < 60) {
+           if (firstRowDist < 0) { // if average is greater than winrate
+             return "start";
+           }
+           else { return "end"; }
+         }
+         else { return "middle"; }
+       });
+   svg.select("#pairDataLabel")
+       .text("Paired win rate")
+       .attr("x", function() {
+         if (Math.abs(firstRowDist) < 30) {
+           if (firstRowDist < 0) { // if average is greater than winrate
+             return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(+champ_subset[0].winrate.toFixed(2))-5;
+           }
+           else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(+champ_subset[0].winrate.toFixed(2))+5; }
+         }
+         else { return graphicMargin.w_names+graphicMargin.btwn_names+xScale_win(+champ_subset[0].winrate.toFixed(2)); }
+       })
+       .call(wrap, 50)
+       .style("text-anchor", function() {
+         if (Math.abs(firstRowDist) < 60) {
+           if (firstRowDist < 0) {
+             return "end";
+           }
+           else { return "start"; }
+         }
+         else { return "middle"; }
+       });
+
+   // Create line breaks
+   svg.selectAll(".breakline")
+      .attr("x2", w_svg)
+      .attr("y1", function(d,i) {
+        return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+      })
+      .attr("y2", function(d,i) {
+        return margin.top + (graphicMargin.h_col+graphicMargin.h_btwn)*(i)*5 - graphicMargin.h_btwn/2;
+      });
+   updateClick();
+}; // end update graphic resizing

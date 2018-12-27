@@ -1,17 +1,3 @@
-/*var rowConverter = function(d) {
-  return {
-    champ: d.champ,
-    winrate: parseFloat(d.winrate)
-  };
-};
-
-var avg_data;
-
-d3.csv('data/jungle_winrates_overall.csv', rowConverter, function(data) {
-
-  avg_data = data;
-
-});*/
 
 var avg_data = [{champ: 'Aatrox',winrate: 0.484620106433638 },
 {champ: 'Ahri',winrate: 0.498866213169796 },

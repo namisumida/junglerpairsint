@@ -1,0 +1,235 @@
+@font-face {
+  font-family: radnika-black;
+  src: url("fonts/Radnika-Black.otf");
+}
+@font-face {
+  font-family: radnika-bold;
+  src: url("fonts/Radnika-Bold.otf");
+}
+@font-face {
+  font-family: radnika-regular;
+  src: url("fonts/Radnika-Regular.otf");
+}
+@font-face {
+  font-family: radnika-medium;
+  src: url("fonts/Radnika-Medium.otf");
+}
+@font-face {
+  font-family: stratum-medium;
+  src: url("fonts/Stratum2-Medium.otf");
+}
+@font-face {
+  font-family: stratum-regular;
+  src: url("fonts/Stratum2-Regular.otf");
+}
+body,html {
+  min-width: 380px;
+  margin: 0 auto;
+}
+#title {
+  position: relative;
+  margin: 0 auto;
+  max-width: 610px;
+  padding: 10px;
+  margin-top: 30px;
+}
+h1 {
+  font-family: radnika-black;
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+}
+h3 {
+  font-family: radnika-medium;
+  font-size: 14px;
+}
+p {
+  font-family: radnika-regular;
+  font-size: 13px;
+}
+h5 {
+  margin: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: rgb(79,39,79);
+  font-family: radnika-regular;
+}
+#title-line {
+  stroke-width: 2;
+  stroke: #a19da8;
+}
+#graphic {
+  position: relative;
+  margin: 0 auto;
+}
+#name-container {
+  margin: 0 auto;
+  margin-top: 0.5em;
+  height: 30px;
+  width: 80%;
+}
+#champion-name {
+  float: left;
+  font-family: radnika-bold;
+  font-size: 25px;
+  float: left;
+  color: rgb(79,39,79);
+  margin: 0;
+}
+#options-container {
+  margin: 0 auto;
+  width: 80%;
+}
+#slider-button-container {
+  float: left;
+}
+#slider-container {
+  float: left;
+  position: relative;
+  margin: 0.5em;
+  margin-left: 0;
+  display: flex;
+}
+#slider-instructions {
+  float: left;
+  max-width: 180px;
+  height: 50px;
+  margin-right: 0;
+  margin-left: 0;
+}
+.slider {
+  min-width: 50%;
+  -webkit-appearance: none;
+  margin: 8px;
+  height: 10px;
+  background: rgb(200,200,200);
+  -webkit-transition: .2s;
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 10px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: rgb(79,39,79);
+    cursor: pointer; /* Cursor on hover */
+}
+.slider::-moz-range-thumb {
+    width: 10px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: rgb(79,39,79);
+    cursor: pointer; /* Cursor on hover */
+}
+#button-section {
+  position: relative;
+  margin: 0.5em;
+  margin-left: 0;
+}
+#button-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+#button-instructions {
+  float: left;
+  margin-left: 0;
+}
+button {
+  background-color: none;
+  font-size: 14px;
+  border-radius: 3px;
+  font-weight: 600;
+  height: 35px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  color: #a19da8;
+  border: 1.5px solid #a19da8;
+  font-family: stratum-medium;
+  cursor: pointer;
+  margin: 0.25em;
+}
+#button-win {
+  background-color: rgb(79,39,79);
+  color: white;
+  width: 80px;
+}
+#button-play {
+  width: 90px;
+}
+#button-alpha {
+  width: 125px;
+}
+#searchbar-container {
+  float: left;
+  margin-top: 1em;
+}
+#searchbar-instructions {
+  float: left;
+  padding-top: 0.5em;
+  margin-left: 0;
+}
+#searchbar {
+  min-width: 160px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 0.25em;
+  font-family: radnika-regular;
+  font-size: 13px;
+}
+#searchbarautocomplete-list {
+  margin-left: 155px;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid rgb(79,39,79);
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  max-width: 150px;
+  font-size: 13px;
+  font-family: radnika-regular;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  color: rgb(79,39,79);
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  font-family: radnika-regular;
+  font-size: 13px;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: rgb(79,39,79);
+  color: white;
+}
+.pairNameText {
+  font-size: 12px;
+  text-anchor: end;
+  font-family: radnika-regular;
+  cursor: pointer;
+}
+.breakline {
+  stroke: gray;
+  stroke-width: 0.1;
+}
+.dotDistance {
+  opacity: 0.5;
+  fill: rgb(100,100,100);
+}
+.countLabel {
+  font-size: 13px;
+  font-family: stratum-medium;
+}
+.midline {
+  stroke-width: 2;
+  opacity: .4;
+}
+.background {
+  fill: white;
+}
+.dataLabel {
+  font-size: 13px;
+  font-family: stratum-medium;
+  fill: rgb(100,100,100);
+  text-anchor: middle;
+}
