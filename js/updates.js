@@ -260,21 +260,21 @@ var updateButton = function(button) {
   // assign other button
   if (value == "win") {
     d3.select("#button-alpha").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
     d3.select("#button-play").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
   }
   else if (value == "play") {
     d3.select("#button-alpha").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
     d3.select("#button-win").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
   }
   else if (value == "alpha") {
     d3.select("#button-win").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
     d3.select("#button-play").style("background-color", "white")
-                             .style("color", d3.color("#a19da8"));
+                             .style("color", d3.rgb(79,39,79));
   }
 
 }; // end update button

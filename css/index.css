@@ -22,10 +22,6 @@
   font-family: stratum-regular;
   src: url("fonts/Stratum2-Regular.otf");
 }
-body,html {
-  min-width: 380px;
-  margin: 0 auto;
-}
 #title {
   position: relative;
   margin: 0 auto;
@@ -62,43 +58,20 @@ h5 {
   position: relative;
   margin: 0 auto;
 }
-#name-container {
-  margin: 0 auto;
-  margin-top: 0.5em;
-  height: 30px;
-  width: 80%;
-}
-#champion-name {
-  float: left;
-  font-family: radnika-bold;
-  font-size: 25px;
-  float: left;
-  color: rgb(79,39,79);
-  margin: 0;
-}
-#options-container {
-  margin: 0 auto;
-  width: 80%;
-}
-#slider-button-container {
-  float: left;
-}
 #slider-container {
-  float: left;
+  margin-left: 1em;
   position: relative;
   margin: 0.5em;
-  margin-left: 0;
   display: flex;
+  width: 100%;
 }
 #slider-instructions {
   float: left;
   max-width: 180px;
   height: 50px;
-  margin-right: 0;
-  margin-left: 0;
 }
 .slider {
-  min-width: 50%;
+  width: 60%;
   -webkit-appearance: none;
   margin: 8px;
   height: 10px;
@@ -107,42 +80,34 @@ h5 {
   cursor: pointer;
 }
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 10px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: rgb(79,39,79);
-    cursor: pointer; /* Cursor on hover */
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: rgb(79,39,79);
+  cursor: pointer; /* Cursor on hover */
 }
 .slider::-moz-range-thumb {
-    width: 10px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: rgb(79,39,79);
-    cursor: pointer; /* Cursor on hover */
+  width: 10px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: rgb(79,39,79);
+  cursor: pointer; /* Cursor on hover */
 }
 #button-section {
-  position: relative;
-  margin: 0.5em;
-  margin-left: 0;
-}
-#button-container {
   display: flex;
   flex-wrap: wrap;
-}
-#button-instructions {
-  float: left;
-  margin-left: 0;
+  margin: 0.5em;
 }
 button {
   background-color: none;
   font-size: 14px;
   border-radius: 3px;
   font-weight: 600;
-  height: 35px;
+  height: 30px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  color: #a19da8;
-  border: 1.5px solid #a19da8;
+  color: rgb(79,39,79);
+  border: 1.5px solid rgb(79,39,79);
   font-family: stratum-medium;
   cursor: pointer;
   margin: 0.25em;
@@ -150,33 +115,32 @@ button {
 #button-win {
   background-color: rgb(79,39,79);
   color: white;
-  width: 90px;
+  width: 80px;
 }
 #button-play {
-  width: 110px;
+  width: 90px;
 }
 #button-alpha {
-  width: 150px;
+  width: 120px;
 }
 #searchbar-container {
-  float: left;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 #searchbar-instructions {
   float: left;
   padding-top: 0.5em;
-  margin-left: 0;
+  margin-left: 16px;
 }
 #searchbar {
-  height: 30px;
-  width: 100px;
+  min-width: 160px;
   margin-left: 10px;
   margin-top: 0.25em;
   font-family: radnika-regular;
   font-size: 13px;
+  height: 30px;
 }
 #searchbarautocomplete-list {
-  margin-left: 155px;
+  margin-left: 170px;
 }
 .autocomplete-items {
   position: absolute;
@@ -232,4 +196,80 @@ button {
   font-family: stratum-medium;
   fill: rgb(100,100,100);
   text-anchor: middle;
+}
+@media screen and (min-width: 590px) {
+  body,html {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+  #options {
+    margin: 0 auto;
+    max-width: 590px;
+  }
+  #champion-name {
+    font-family: radnika-bold;
+    font-size: 25px;
+    text-align: right;
+    float: left;
+    color: rgb(79,39,79);
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+  }
+}
+@media screen and (max-width: 590px) {
+  body,html {
+    min-width: 380px;
+    margin: 0 auto;
+  }
+  #name-container {
+    margin: 0 auto;
+    margin-top: 0.5em;
+    height: 30px;
+    width: 80%;
+  }
+  #champion-name {
+    float: left;
+    font-family: radnika-bold;
+    font-size: 25px;
+    float: left;
+    color: rgb(79,39,79);
+    margin: 0;
+  }
+  #options-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 80%;
+  }
+  #slider-container {
+    margin-left: 0;
+  }
+  #slider-instructions {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .slider {
+    min-width: 50%;
+  }
+  #button-section {
+    margin-left: 0;
+  }
+  #button-instructions {
+    margin-left: 0;
+  }
+  button {
+    height: 35px;
+  }
+  #searchbar-container {
+    margin-top: 1em;
+  }
+  #searchbar-instructions {
+    margin-left: 0;
+  }
+  #searchbar {
+    width: 100px;
+  }
+  #searchbarautocomplete-list {
+    margin-left: 155px;
+  }
 }

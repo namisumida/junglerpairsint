@@ -1,4 +1,3 @@
-
 var avg_data = [{champ: 'Aatrox',winrate: 0.484620106433638 },
 {champ: 'Ahri',winrate: 0.498866213169796 },
 {champ: 'Akali',winrate: 0.397741472697074 },

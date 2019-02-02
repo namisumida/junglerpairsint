@@ -2,12 +2,9 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Nexus Blitz Jungler Pairs</title>
-	<link type="text/css" href="css/over.css" rel="stylesheet" media="screen and (min-width:590px)"/>
-	<link type="text/css" href="css/under.css" rel="stylesheet" media="screen and (max-width:590px)"/>
+	<link type="text/css" href="css/index.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -29,19 +26,17 @@
 					<h5 id="searchbar-instructions">Search for champions:</h5>
 					<input id="searchbar" type="text" placeholder="Type name">
 				</div>
-				<div id="slider-button-container">
-					<div id="button-section">
-						<h5 id="button-instructions">Sort by:</h5>
-						<div id="button-container">
-							<button type="button" id="button-win" value="win">Win rate</button>
-							<button type="button" id="button-play" value="play"># of games</button>
-							<button type="button" id="button-alpha" value="alpha">Champion name</button>
-						</div>
+				<div id="button-section">
+					<h5 id="button-instructions">Sort by:</h5>
+					<div id="button-container">
+						<button type="button" id="button-win" value="win">Win rate</button>
+						<button type="button" id="button-play" value="play"># of games</button>
+						<button type="button" id="button-alpha" value="alpha">Champion name</button>
 					</div>
-					<div id="slider-container">
-						<h5 id="slider-instructions">Show pairs with at least 200 games played:</h5>
-						<input id="slider" class="slider" type="range" min="137" max="12567" step="1" value="200" orient="horizontal"></input>
-					</div>
+				</div>
+				<div id="slider-container">
+					<h5 id="slider-instructions">Show pairs with at least 200 games played:</h5>
+					<input id="slider" class="slider" type="range" min="137" max="12567" step="1" value="200" orient="horizontal"></input>
 				</div>
 			</div>
 		</section>
